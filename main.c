@@ -20,8 +20,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 		if(__HAL_ADC_GET_FLAG(&hadc2, ADC_FLAG_EOC) != RESET)
 	{
-		if (count==0){
-		adc_data[0]=map(HAL_ADC_GetValue(&hadc2),0,4095,0,10);
+		if (count==0){												//intrerrupt modda farkı channelları aynı fonksiyonla okuyacagımızdan 							
+		adc_data[0]=map(HAL_ADC_GetValue(&hadc2),0,4095,0,10);		//dolayı count degişkenini kullandık
 			val=adc_data[0];
 			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12 );
 			
@@ -54,7 +54,7 @@ int main(void)
   SystemClock_Config();
   MX_GPIO_Init();
   MX_ADC2_Init();
-  HAL_ADC_Start_IT(&hadc2);			//stm32f4xx_hal_adc.c den alındı
+  HAL_ADC_Start_IT(&hadc2);													//stm32f4xx_hal_adc.c den alındı
   while (1)
   {
   
