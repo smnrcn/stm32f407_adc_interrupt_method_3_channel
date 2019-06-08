@@ -2,18 +2,13 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 
-char txstr[20];
 int16_t adc_data[3];
 int val,val1,val2,count=0;
 
 ADC_HandleTypeDef hadc2;
 
-UART_HandleTypeDef huart2;
-
-
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_USART2_UART_Init(void);
 static void MX_ADC2_Init(void);
 
 float map(float value,float inmin,float inmax,float outmin,float outmax){
