@@ -53,9 +53,8 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
   MX_ADC2_Init();
-  HAL_ADC_Start_IT(&hadc2);
+  HAL_ADC_Start_IT(&hadc2);			//stm32f4xx_hal_adc.c den alındı
   while (1)
   {
   
@@ -127,8 +126,8 @@ static void MX_ADC2_Init(void)
   }
 
   sConfig.Channel = ADC_CHANNEL_4;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_480CYCLES;
+  sConfig.Rank = 1;							//ranklara farklı numaralar verilmeli
+  sConfig.SamplingTime = ADC_SAMPLETIME_480CYCLES;			//cycle sayısı arttıkca daha seyrek tarama yapacak
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -181,3 +180,4 @@ void assert_failed(uint8_t* file, uint32_t line)
   
 }
 #endif 
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
